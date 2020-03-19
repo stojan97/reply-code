@@ -70,6 +70,7 @@ public class Solver {
       }
     }
     new Printer().exportToFile(coords, fileName + "_sol");
+    new Printer().exportToFile(List.of(String.valueOf(total)), fileName + "_points");
   }
 
   private void bfs(Pair p) {
