@@ -30,7 +30,7 @@ public class Solver {
   public Solver(
     String fileName, List<String> matrix, List<Developer> developers, List<Manager> managers) {
 
-    this.fileName = fileName;
+    this.fileName = fileName + "_" + this.getClass().getSimpleName();
     this.matrix = matrix;
     this.developers = developers;
     this.managers = managers;
