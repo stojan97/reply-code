@@ -115,11 +115,11 @@ public class Solver {
       if (r.equals(currReplyer) || visitedReplyers.contains(r)) {
         continue;
       }
-
-      long totalPoints = Calculator.wp(currReplyer, r) + Calculator.bp(currReplyer, r);
-      if (totalPoints >= maxTotalPoints) {
+      List<Replyer> neigh = getNeighborReplyers(p);
+      long score = calculateScore(r, neigh);
+      if (score >= maxTotalPoints) {
         result = r;
-        maxTotalPoints = totalPoints;
+        maxTotalPoints = score;
       }
     }
 
@@ -159,6 +159,32 @@ public class Solver {
           int countNeightbors = getNeighbors(i, j).size();
           result.add(new Pair(i, j, countNeightbors));
         }
+      }
+    }
+    return result;
+  }
+
+  private long calculateScore(Replyer r, List<Replyer> neigh) {
+
+    if(neigh.size() == 0) {
+      return r.bonusPoints;
+    }
+
+    long result = 0;
+    for(Replyer n : neigh) {
+      result += (Calculator.wp(r, n) + Calculator.bp(r, n));
+    }
+    return result;
+  }
+
+  private List<Replyer> getNeighborReplyers(Pair p) {
+
+    List<Replyer> result = new ArrayList<>();
+    for (int i = 0; i < 4; i++) {
+      int nr = p.i + dirR[i];
+      int nc = p.j + dirC[i];
+      if (isValid(nr, nc) && visited[nr][nc] != null) {
+        result.add(visited[nr][nc]);
       }
     }
     return result;
