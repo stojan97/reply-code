@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Calculator {
+public final class Calculator {
 
-  static long wp(Replyer a, Replyer b) {
+  public static long wp(Replyer a, Replyer b) {
 
     Set<String> sa = new HashSet<>(a.skills);
     Set<String> sb = new HashSet<>(b.skills);
@@ -17,10 +17,11 @@ public class Calculator {
 
     sa.retainAll(sb);
     long intersection = sa.size();
+
     return intersection * (union - intersection);
   }
 
-  static long bp(Replyer a, Replyer b) {
+  public static long bp(Replyer a, Replyer b) {
 
     if (Objects.equals(a.company, b.company)) {
       return a.bonusPoints * b.bonusPoints;
