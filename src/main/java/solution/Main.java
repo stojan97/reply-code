@@ -16,7 +16,7 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
 
-    String[] files = new String[] { "a_solar.txt" };
+    String[] files = new String[] { "a_solar.txt", "b_dream.txt", "c_soup.txt", "d_maelstrom.txt", "e_igloos.txt", "f_glitch.txt" };
     for (String f : files) {
       solve(f);
     }
